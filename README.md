@@ -2,8 +2,6 @@
 
 WebCrafter is an AI-powered web development tool that generates HTML, CSS, and JavaScript code from natural language descriptions. Perfect for quickly prototyping web components or learning web development.
 
-![WebCrafter Logo](public/favicon.ico)
-
 ## Features
 
 - **AI-Powered Code Generation**: Transform natural language descriptions into functional web code
@@ -19,7 +17,6 @@ WebCrafter is an AI-powered web development tool that generates HTML, CSS, and J
 - **UI Components**: Custom components built with [Radix UI](https://www.radix-ui.com/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) with [tailwind-merge](https://github.com/dcastil/tailwind-merge)
 - **AI**: [GenKit](https://genkit.ai/) for AI model integration
-- **Forms**: [React Hook Form](https://react-hook-form.com/) with [Zod](https://github.com/colinhacks/zod) validation
 - **State Management**: React Query (Tanstack)
 - **Authentication**: Firebase
 
@@ -70,12 +67,6 @@ WebCrafter is an AI-powered web development tool that generates HTML, CSS, and J
 ### Available Scripts
 
 - `npm run dev` - Start the development server with Turbopack
-- `npm run genkit:dev` - Start the GenKit AI development server
-- `npm run genkit:watch` - Start the GenKit AI server in watch mode
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint to check code quality
-- `npm run typecheck` - Run TypeScript type checking
 
 ## Contributing
 
