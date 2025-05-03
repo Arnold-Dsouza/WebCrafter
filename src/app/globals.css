@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Sleek Light Theme */
+    --background: 210 40% 98%; /* Very Light Cool Gray */
+    --foreground: 215 28% 17%; /* Dark Slate */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 215 28% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+    --primary: 217 33% 50%; /* Muted Blue */
+    --primary-foreground: 0 0% 98%; /* Near White */
+    --secondary: 210 40% 93%; /* Light Cool Gray */
+    --secondary-foreground: 215 28% 26%; /* Slate Gray */
+    --muted: 210 40% 96%; /* Lighter Cool Gray */
+    --muted-foreground: 215 15% 45%; /* Medium Gray */
+    --accent: 170 64% 45%; /* Slightly desaturated Teal */
+    --accent-foreground: 0 0% 100%; /* White on Teal */
+    --destructive: 0 72% 51%; /* Softer Red */
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 40% 88%; /* Light Gray Border */
+    --input: 210 40% 88%; /* Light Gray Input Border */
+    --ring: 170 64% 45%; /* Teal Ring */
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.75rem; /* Slightly larger radius */
+    --sidebar-background: 210 40% 96%; /* Lighter Cool Gray for sidebar */
+    --sidebar-foreground: 215 28% 26%; /* Slate Gray for sidebar text */
+    --sidebar-primary: 170 64% 45%; /* Teal for sidebar primary elements */
+    --sidebar-primary-foreground: 0 0% 100%; /* White on teal */
+    --sidebar-accent: 210 40% 90%; /* Slightly darker accent */
+    --sidebar-accent-foreground: 215 28% 17%; /* Dark Slate on accent */
+    --sidebar-border: 210 40% 85%; /* Slightly darker border */
+    --sidebar-ring: 170 64% 45%; /* Teal ring */
+  }
+  .dark {
+    /* Sleek Dark Theme */
+    --background: 215 28% 10%; /* Dark Slate variant */
+    --foreground: 210 40% 98%; /* Near White */
+    --card: 215 28% 13%; /* Slightly lighter card background */
+    --card-foreground: 210 40% 98%;
+    --popover: 215 28% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 33% 65%; /* Lighter Muted Blue for dark */
+    --primary-foreground: 215 28% 10%; /* Dark Slate */
+    --secondary: 215 25% 18%; /* Darker Gray */
+    --secondary-foreground: 210 40% 98%; /* Near White */
+    --muted: 215 25% 20%;
+    --muted-foreground: 215 15% 65%; /* Lighter Gray Text */
+    --accent: 170 64% 55%; /* Brighter Teal for dark */
+    --accent-foreground: 215 28% 10%; /* Dark Slate on Teal */
+    --destructive: 0 63% 50%; /* Softer Red for dark */
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 25% 25%; /* Dark Gray Border */
+    --input: 215 25% 25%; /* Dark Gray Input Border */
+    --ring: 170 64% 55%; /* Brighter Teal Ring */
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --radius: 0.75rem; /* Slightly larger radius */
+    --sidebar-background: 215 28% 15%; /* Slightly darker slate for sidebar */
+    --sidebar-foreground: 210 40% 98%; /* Near White */
+    --sidebar-primary: 170 64% 55%; /* Brighter Teal */
+    --sidebar-primary-foreground: 215 28% 10%; /* Dark Slate on teal */
+    --sidebar-accent: 215 25% 25%; /* Dark Gray accent */
+    --sidebar-accent-foreground: 210 40% 98%; /* Near white on accent */
+    --sidebar-border: 215 25% 30%; /* Slightly lighter border */
+    --sidebar-ring: 170 64% 55%; /* Brighter Teal ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased; /* Ensure sans-serif font and antialiasing */
+  }
+}
