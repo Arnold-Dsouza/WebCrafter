@@ -7,6 +7,7 @@ import { CodeDisplay } from "@/components/code-display";
 import { generateCode, type GenerateCodeInput, type GenerateCodeOutput } from "@/ai/flows/generate-code-from-description";
 import { useToast } from "@/hooks/use-toast";
 import { ThemeToggleButton } from "@/components/theme-toggle-button"; // Import the toggle button
+import { PreviewButton } from "@/components/preview-button"; // Import the preview button
 
 export default function Home() {
   const [generatedCode, setGeneratedCode] = React.useState<GenerateCodeOutput>({
@@ -85,14 +86,21 @@ ${generatedCode.javascript}
   const hasGeneratedCode = !!(generatedCode.html || generatedCode.css || generatedCode.javascript);
 
   return (
-    // Use bg-background, add overflow-hidden to prevent potential scrollbars
-    <main className="flex flex-col md:flex-row min-h-screen p-4 md:p-6 gap-4 md:gap-6 bg-background relative overflow-hidden">
-      {/* Add Theme Toggle Button */}
-      <div className="absolute top-4 right-4 z-10">
+    // Use bg-background, add overflow-hidden to prevent potential scrollbars, add pb-16 for footer space
+    <main className="flex flex-col md:flex-row min-h-screen p-4 md:p-6 pb-16 gap-4 md:gap-6 bg-background relative">
+      {/* Add Theme Toggle Button and Preview Button */}
+      <div className="absolute top-4 right-4 z-10 flex gap-2">
+        <PreviewButton 
+          html={generatedCode.html}
+          css={generatedCode.css}
+          javascript={generatedCode.javascript}
+          disabled={isLoading || !hasGeneratedCode}
+        />
         <ThemeToggleButton />
       </div>
-      {/* Ensure flex column layout and use theme spacing for max-height */}
-      <div className="flex flex-col md:w-1/2 md:max-h-[calc(100vh-theme(spacing.12))]">
+      
+      {/* Description input section - now smaller */}
+      <div className="flex flex-col md:w-1/3 md:max-h-[calc(100vh-theme(spacing.24))]">
         <DescriptionInput
           onSubmit={handleGenerateCode}
           onDownload={handleDownload}
@@ -100,8 +108,9 @@ ${generatedCode.javascript}
           hasGeneratedCode={hasGeneratedCode}
         />
       </div>
-       {/* Ensure flex column layout and use theme spacing for max-height */}
-      <div className="flex flex-col md:w-1/2 md:max-h-[calc(100vh-theme(spacing.12))]">
+      
+      {/* Code display section - now larger */}
+      <div className="flex flex-col md:w-2/3 md:max-h-[calc(100vh-theme(spacing.24))]">
         <CodeDisplay
           html={generatedCode.html}
           css={generatedCode.css}
@@ -110,9 +119,15 @@ ${generatedCode.javascript}
         />
       </div>
 
-      {/* Footer with Made by Arnold text */}
-      <div className="absolute bottom-2 left-0 right-0 text-center text-sm text-muted-foreground">
-        Made by Arnold
+      {/* Footer with Made by Arnold text - now using fixed positioning */}
+      <div className="fixed bottom-3 left-0 right-0 flex items-center justify-center space-x-2 py-2 z-10">
+        <div className="bg-primary/10 backdrop-blur-sm px-4 py-2 rounded-full border border-primary/20 flex items-center gap-2 shadow-md">
+          <span className="text-sm font-medium bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+            Made with ❤️ by Arnold
+          </span>
+          <span className="text-xs text-muted-foreground px-2 border-l border-primary/20">V0.0.1</span>
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        </div>
       </div>
     </main>
   );

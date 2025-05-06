@@ -1,4 +1,5 @@
-# WebCrafter
+# WebCrafter 
+## Version 0.0.1
 
 WebCrafter is an AI-powered web development tool that generates HTML, CSS, and JavaScript code from natural language descriptions. Perfect for quickly prototyping web components or learning web development.
 
@@ -67,6 +68,14 @@ WebCrafter is an AI-powered web development tool that generates HTML, CSS, and J
 ### Available Scripts
 
 - `npm run dev` - Start the development server with Turbopack
+
+### Version History
+
+- **v0.0.1** - Initial release
+  - Basic AI code generation
+  - Preview functionality
+  - Download options
+  - Dark/Light theme toggle
 
 ## Contributing
 

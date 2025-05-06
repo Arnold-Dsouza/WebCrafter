@@ -1,13 +1,11 @@
 "use client";
 
 import type * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,27 +18,9 @@ interface CodeDisplayProps {
 }
 
 export function CodeDisplay({ html, css, javascript, isLoading }: CodeDisplayProps) {
-  const [combinedPreview, setCombinedPreview] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("html");
   const [copied, setCopied] = useState(false);
   
-  // Combine HTML, CSS, and JavaScript for the preview whenever they change
-  useEffect(() => {
-    const combined = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <style>${css}</style>
-      </head>
-      <body>
-        ${html}
-        <script>${javascript}</script>
-      </body>
-      </html>
-    `;
-    setCombinedPreview(combined);
-  }, [html, css, javascript]);
-
   // Get current content based on active tab
   const getCurrentContent = () => {
     switch(activeTab) {
@@ -123,14 +103,14 @@ export function CodeDisplay({ html, css, javascript, isLoading }: CodeDisplayPro
 
   return (
     <Card className="h-full flex flex-col overflow-hidden">
-       <CardHeader className="pb-2">
+      <CardHeader className="pb-2">
         <CardTitle>Generated Code</CardTitle>
         <CardDescription>Review the HTML, CSS, and JavaScript generated below.</CardDescription>
       </CardHeader>
-      <CardContent className="flex-grow flex flex-col gap-4 p-4 pt-0 overflow-hidden">
-        {/* Code Section - Use flex-grow and min-height to ensure proper sizing */}
-        <div className="flex flex-col min-h-[40%] flex-grow-0 overflow-hidden">
-          {/* Properly structured Tabs component */}
+      <CardContent className="flex-grow flex flex-col p-4 pt-0 overflow-hidden">
+        {/* Code Section - Using full height with flex-grow */}
+        <div className="flex flex-col flex-grow overflow-hidden">
+          {/* Tabs component */}
           <Tabs defaultValue="html" className="flex-grow flex flex-col w-full" onValueChange={setActiveTab}>
             <div className="flex justify-between items-center mb-2">
               <TabsList className="grid w-[300px] grid-cols-3 shrink-0">
@@ -164,14 +144,16 @@ export function CodeDisplay({ html, css, javascript, isLoading }: CodeDisplayPro
               </Button>
             </div>
             
-            {/* Enhanced code display area */}
+            {/* Enhanced code display area - Now using full height */}
             <div className="flex-grow flex flex-col border rounded-md overflow-hidden relative bg-muted/30">
-              <ScrollArea className="h-[250px] w-full">
+              <ScrollArea className="flex-grow w-full h-[400px]" type="always">
                 <pre 
-                  className="font-mono text-sm p-4 whitespace-pre-wrap"
+                  className="font-mono text-sm p-4 overflow-x-auto"
                   aria-label={getCurrentLabel()}
                 >
-                  <code className="block w-full">{getCurrentContent() || `// No ${activeTab} code generated yet.`}</code>
+                  <code className="block w-fit min-w-full">
+                    {getCurrentContent() || `// No ${activeTab} code generated yet.`}
+                  </code>
                 </pre>
               </ScrollArea>
             </div>
@@ -181,22 +163,6 @@ export function CodeDisplay({ html, css, javascript, isLoading }: CodeDisplayPro
             <TabsContent value="css" className="hidden"></TabsContent>
             <TabsContent value="javascript" className="hidden"></TabsContent>
           </Tabs>
-        </div>
-        
-        {/* Separator between code and preview */}
-        <Separator className="my-1" />
-        
-        {/* Preview Section - Use flex-grow to fill remaining space */}
-        <div className="flex flex-col min-h-[40%] flex-grow overflow-hidden">
-          <h3 className="text-lg font-semibold mb-2">Preview</h3>
-          <div className="border rounded-md overflow-hidden flex-grow">
-            <iframe
-              srcDoc={combinedPreview}
-              title="Code Preview"
-              className="w-full h-full border-0"
-              sandbox="allow-scripts"
-            />
-          </div>
         </div>
       </CardContent>
     </Card>
