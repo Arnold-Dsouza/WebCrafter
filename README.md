@@ -66,8 +66,6 @@ WebCrafter is an AI-powered web development tool that generates HTML, CSS, and J
 4. Use the preview tab to see how your component looks and functions
 5. Download the code as a single HTML file or as separate HTML, CSS, and JS files
 
-![WebCrafter Interface](public/image.png)
-
 ## Development
 
 ### Available Scripts
